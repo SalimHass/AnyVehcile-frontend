@@ -1,0 +1,16 @@
+.signup-container{
+    background-color: rgb(155, 155, 155);
+    display: flex;
+    justify-content: center;
+}
+
+
+.signup-form{
+    width: 550px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.signup-btn{
+    grid-column: 1 / -1;
+}

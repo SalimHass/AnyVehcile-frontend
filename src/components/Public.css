@@ -1,0 +1,9 @@
+.public{
+    padding:35px 25px;
+}
+
+.main-container{
+    display:flex;
+    flex-direction: column;
+    
+}
