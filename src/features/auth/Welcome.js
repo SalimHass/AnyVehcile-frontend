@@ -4,6 +4,7 @@ import React from "react";
 import { useRef, useState, useEffect } from "react";
 import {useNewRequestMutation, useUserRequestListQuery} from "../request/requestSlice";
 import jwt_decode from "jwt-decode";
+import './Welcome.css'
 
 const Welcome = () => {
     const user = useSelector(selectCurrentUser)
@@ -48,15 +49,34 @@ const Welcome = () => {
 
     const welcome = user ? `Welcome ${user}!` : 'Welcome!'
     console.log(data)
-    const dtable= data?.map(e=> {
+    const dtable= <table>
+        <tr>
+            <th>Status</th>
+            <th>Request</th>
+            <th>Car Model</th>
+            <th>Car year</th>
+            <th>Urgent</th>
+        </tr>
+        {data?.map(e=> {
+
+return (
+    <tr>
+        <td>{e.service_status_display}</td>
+        <td>{e.service_request}</td>
+        <td>{e.car_model}</td>
+        <td>{e.car_year}</td>
+        {e.is_urgent? <td>Urgent</td>: <td>Not Urgent</td>}
+    
+    </tr>
+
+)})}
+    </table>
+
 
     return (
-        <p>{e.service_request}</p>
+       
 
-    )})
-
-
-    return (
+        
         <section className="welcome">
             <h1>{welcome}</h1>
             <div>{dtable}</div>
@@ -112,6 +132,7 @@ const Welcome = () => {
 
 
         </section>
+        
     )
 }
 export default Welcome
