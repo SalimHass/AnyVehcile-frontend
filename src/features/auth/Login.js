@@ -1,9 +1,10 @@
-import { useRef, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import {useRef, useState, useEffect} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 
-import { useDispatch } from 'react-redux'
-import { setCredentials } from './authSlice'
-import { useLoginMutation } from './authApiSlice'
+import {useDispatch} from 'react-redux'
+import {setCredentials} from '../../app/api/authSlice'
+import {useLoginMutation} from '../../app/api/authApiSlice'
+import "./Login.css"
 
 const Login = () => {
     const userRef = useRef()
@@ -13,7 +14,7 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState('')
     const navigate = useNavigate()
 
-    const [login, { isLoading }] = useLoginMutation()
+    const [login, {isLoading}] = useLoginMutation()
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -28,8 +29,8 @@ const Login = () => {
         e.preventDefault()
 
         try {
-            const userData = await login({ username, password }).unwrap()
-            dispatch(setCredentials({ ...userData, user: username }))
+            const userData = await login({username, password}).unwrap()
+            dispatch(setCredentials({...userData, user: username}))
             setUser('')
             setPwd('')
             navigate('/welcome')
@@ -58,7 +59,7 @@ const Login = () => {
 
             <h1>Employee Login</h1>
 
-            <form onSubmit={handleSubmit}>
+            <form className='login-form' onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
@@ -78,8 +79,12 @@ const Login = () => {
                     value={password}
                     required
                 />
-                <button>Sign In</button>
+                <button className="signin-btn">Sign In</button>
+
             </form>
+            <Link className="signup-ui" to="/signup">
+                <button className="signin-btn">Sign Up</button>
+            </Link>
         </section>
     )
 

@@ -3,9 +3,51 @@
     
 }
 
-table , td{
-    border:1px solid black;
+table { 
+	width: 750px; 
+	border-collapse: collapse; 
+	margin:50px 50px;
+	}
+
+tr:nth-of-type(odd) { 
+	background: #eee; 
+	}
+
+th { 
+	background: rgb(37, 37, 37); 
+	color: white; 
+	font-weight: bold; 
+	}
+
+td, th { 
+	padding: 10px; 
+	border: 1px solid #ccc; 
+	text-align: left; 
+	font-size: 18px;
+	}
+
+.service-form{
+    padding: 5px;
+    margin-left: 50px;
+    border: 2px solid black;
+    width: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
 }
-td{
-    padding:3px 3px;
+label, input{
+    margin-bottom: 5px;
+}
+.newreq{
+    margin-bottom: 25px;
+}
+
+.sub-btn{
+    grid-column: 1 / -1;
+    height: 40px;
+    background-color: rgb(37, 37, 37);
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 3px;
+
 }

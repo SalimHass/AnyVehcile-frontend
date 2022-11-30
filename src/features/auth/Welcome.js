@@ -1,10 +1,10 @@
 import {useSelector} from "react-redux"
-import {selectCurrentToken, selectCurrentUser} from "./authSlice"
+import {selectCurrentToken, selectCurrentUser} from "../../app/api/authSlice"
 import React from "react";
-import { useRef, useState, useEffect } from "react";
-import {useNewRequestMutation, useUserRequestListQuery} from "../request/requestSlice";
+import {useRef, useState, } from "react";
+import {useNewRequestMutation, useUserRequestListQuery} from "../../app/api/requestSlice";
 import jwt_decode from "jwt-decode";
-import './Welcome.css'
+import "./Welcome.css";
 
 const Welcome = () => {
     const user = useSelector(selectCurrentUser)
@@ -18,13 +18,13 @@ const Welcome = () => {
     const [carYear, setCarYear] = useState(2022);
     const [errMsg, setErrMsg] = useState("");
     const [newRequest, {isNewLoading}] = useNewRequestMutation();
-    const {data, error , isGetRequestLoading} = useUserRequestListQuery();
+    const {data, error, isGetRequestLoading} = useUserRequestListQuery();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await newRequest({
-                user : user_id,
+                user: user_id,
                 service_request: serviceRequest,
                 is_urgent: isUrgent,
                 car_model: carModel,
@@ -48,41 +48,41 @@ const Welcome = () => {
 
 
     const welcome = user ? `Welcome ${user}!` : 'Welcome!'
-    console.log(data)
-    const dtable= <table>
+    const dtable = <table>
         <tr>
-            <th>Status</th>
-            <th>Request</th>
+            <th>Service</th>
+            <th>Service Status</th>
             <th>Car Model</th>
-            <th>Car year</th>
+            <th>Car Year</th>
             <th>Urgent</th>
+            <th>Creation Date</th>
         </tr>
-        {data?.map(e=> {
+        {data?.map(e => {
 
-return (
-    <tr>
-        <td>{e.service_status_display}</td>
-        <td>{e.service_request}</td>
-        <td>{e.car_model}</td>
-        <td>{e.car_year}</td>
-        {e.is_urgent? <td>Urgent</td>: <td>Not Urgent</td>}
-    
-    </tr>
+            return (
+                <tr>
+                    <td>{e.service_request}</td>
+                    <td>{e.service_status_display}</td>
+                    <td>{e.car_model}</td>
+                    <td>{e.car_year}</td>
+                    <td>{e.is_urgent ? "Yes" : "No"}</td>
+                    <td>{e.display_date}</td>
+                </tr>
 
-)})}
+
+            )
+        })}
     </table>
-
-
     return (
-       
-
-        
         <section className="welcome">
             <h1>{welcome}</h1>
             <div>{dtable}</div>
             <div>
                 <section className="service_request">
                     <div className="service-container">
+
+                        <h3>New Request</h3>
+
                         <form className="service-form" onSubmit={handleSubmit}>
                             <label htmlFor="serviceRequest">Service Request:</label>
                             <input
@@ -96,7 +96,7 @@ return (
                             <label htmlFor="carModel">Car Model:</label>
                             <input
                                 type="text"
-                                id="firstname"
+                                id="carModel"
                                 value={carModel}
                                 onChange={handleCarModelInput}
                                 required
@@ -104,7 +104,7 @@ return (
                             <label htmlFor="carYear">Car Year:</label>
                             <input
                                 type="number"
-                                id="lastname"
+                                id="carYear"
                                 value={carYear}
                                 onChange={handleCarYearInput}
                                 min="1985" max="2023"
@@ -116,23 +116,16 @@ return (
                                 id="is_urgent"
                                 value={isUrgent}
                                 onChange={handleUrgentInput}
-
-
                             />
-
-
-                            <button className="newreq-btn">New Request</button>
+                            <button className="sub-btn">Submit</button>
                         </form>
                     </div>
                 </section>
 
             </div>
 
-            <div>New Request</div>
-
 
         </section>
-        
     )
 }
 export default Welcome

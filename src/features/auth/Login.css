@@ -1,0 +1,30 @@
+.login{
+    padding: 50px;
+}
+
+label, input{
+    margin-right: 5px;
+    
+}
+
+
+.signin-btn{
+    height: 40px;
+    background-color: rgb(37, 37, 37);
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 3px;
+    grid-column: 1 / -1;
+    margin-top: 10px;
+    width: 350px;
+}
+
+.login-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 350px;
+}
+
+.signup-ui{
+    margin-top:10px ;
+   }

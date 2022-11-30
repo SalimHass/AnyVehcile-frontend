@@ -1,7 +1,6 @@
 .signup-container{
-    background-color: rgb(155, 155, 155);
-    display: flex;
-    justify-content: center;
+    padding-top: 50px;
+
 }
 
 
@@ -13,4 +12,21 @@
 
 .signup-btn{
     grid-column: 1 / -1;
+}
+.signup{
+    height: 100vh;
+    padding: 50px;
+}
+
+.signup-btn{
+    grid-column: 1 / -1;
+    height: 40px;
+    background-color: rgb(37, 37, 37);
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 3px;
+
+}
+label, input{
+    margin-bottom: 5px;
 }
